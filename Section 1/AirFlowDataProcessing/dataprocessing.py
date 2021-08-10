@@ -1,4 +1,6 @@
 import pandas as pd
+import schedule
+import time
 
 
 def processFile(fileName):
@@ -29,10 +31,22 @@ def processFile(fileName):
 
 def main():
     file1 = 'dataset1.csv'
-    processFile(file1)
+    # processFile(file1)
 
     file2 = 'dataset2.csv'
-    processFile(file2)
+    # processFile(file2)
+
+    # Scheduled to run at 1am every day
+    schedule.every().day.at("01:00").do(processFile, fileName=file1)
+    schedule.every().day.at("01:00").do(processFile, fileName=file2)
+
+    # Uncomment this to run all jobs now regardless of scheduling
+    # schedule.run_all()
+
+    # Comment this to stop waiting for the scheduled job to run
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
 
 if __name__ == "__main__":

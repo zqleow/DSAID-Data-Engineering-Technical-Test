@@ -1,0 +1,243 @@
+The files belonging to this database system will be owned by user "postgres".
+
+This user must also own the server process.
+
+
+
+initdb: warning: enabling "trust" authentication for local connections
+
+You can change this by editing pg_hba.conf or using the option -A, or
+
+--auth-local and --auth-host, the next time you run initdb.
+
+2021-08-09 19:43:56.414 UTC [1] LOG: starting PostgreSQL 13.3 (Debian 13.3-1.pgdg100+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 8.3.0-6) 8.3.0, 64-bit
+
+2021-08-09 19:43:56.414 UTC [1] LOG: listening on IPv4 address "0.0.0.0", port 5432
+
+2021-08-09 19:43:56.414 UTC [1] LOG: listening on IPv6 address "::", port 5432
+
+2021-08-09 19:43:56.419 UTC [1] LOG: listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+
+2021-08-09 19:43:56.424 UTC [66] LOG: database system was shut down at 2021-08-09 19:43:56 UTC
+
+2021-08-09 19:43:56.428 UTC [1] LOG: database system is ready to accept connections
+
+2021-08-09 19:46:05.596 UTC [91] FATAL: role "root" does not exist
+
+2021-08-09 19:48:39.499 UTC [109] ERROR: syntax error at or near "databse" at character 8
+
+2021-08-09 19:48:39.499 UTC [109] STATEMENT: create databse CarDealershipDB;
+
+2021-08-09 20:06:42.009 UTC [152] LOG: invalid length of startup packet
+
+2021-08-09 20:06:43.242 UTC [153] LOG: invalid length of startup packet
+
+2021-08-09 20:06:48.301 UTC [154] LOG: invalid length of startup packet
+
+2021-08-10 01:08:26.077 UTC [112] ERROR: syntax error at or near "FOREIGN" at character 145
+
+2021-08-10 01:08:26.077 UTC [112] STATEMENT: CREATE TABLE car (
+
+car_id serial PRIMARY KEY,
+
+manufacturer_name varchar(50),
+
+serial_num numeric,
+
+weight int,
+
+price numeric(6, 0)
+
+FOREIGN KEY (price) REFERENCES transaction(car_price),
+
+FOREIGN KEY (car_id) REFERENCES trajsaction(car_id)
+
+);
+
+2021-08-10 01:08:48.464 UTC [112] ERROR: relation "transaction" does not exist
+
+2021-08-10 01:08:48.464 UTC [112] STATEMENT: CREATE TABLE car (
+
+car_id serial PRIMARY KEY,
+
+manufacturer_name varchar(50),
+
+serial_num numeric,
+
+weight int,
+
+price numeric(6, 0),
+
+FOREIGN KEY (price) REFERENCES transaction(car_price),
+
+FOREIGN KEY (car_id) REFERENCES trajsaction(car_id)
+
+);
+
+2021-08-10 01:09:31.770 UTC [112] ERROR: syntax error at or near ")" at character 137
+
+2021-08-10 01:09:31.770 UTC [112] STATEMENT: CREATE TABLE customer(
+
+customer_id serial PRIMARY KEY,
+
+customer_name varchar(50),
+
+spending numeric(6, 0),
+
+customer_phone numeric(8, 0),
+
+);
+
+2021-08-10 01:09:37.650 UTC [112] ERROR: syntax error at or near ")" at character 137
+
+2021-08-10 01:09:37.650 UTC [112] STATEMENT: CREATE TABLE customer(
+
+customer_id serial PRIMARY KEY,
+
+customer_name varchar(50),
+
+spending numeric(6, 0),
+
+customer_phone numeric(8, 0),
+
+);
+
+2021-08-10 01:10:04.317 UTC [112] ERROR: syntax error at or near ")" at character 136
+
+2021-08-10 01:10:04.317 UTC [112] STATEMENT: CREATE TABLE customer(customer_id serial PRIMARY KEY,
+
+customer_name varchar(50),
+
+spending numeric(6, 0),
+
+customer_phone numeric(8, 0),
+
+);
+
+2021-08-10 01:10:59.160 UTC [112] ERROR: there is no unique constraint matching given keys for referenced table "car"
+
+2021-08-10 01:10:59.160 UTC [112] STATEMENT: CREATE TABLE transaction(
+
+transaction_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+car_price numeric(6, 0),
+
+transaction_month int,
+
+customer_name varchar(50),
+
+customer_phone numeric(8, 0),
+
+car_id serial,
+
+manufacturer_name varchar(50),
+
+FOREIGN KEY (car_price)REFERENCES car(price),
+
+FOREIGN KEY (customer_name) REFERENCES customer(customer_name),
+
+FOREIGN KEY (customer_phone) REFERENCES customer(customer_phone),
+
+FOREIGN KEY (car_id) REFERENCES customer(car_id)
+
+);
+
+2021-08-10 01:11:32.434 UTC [112] ERROR: there is no unique constraint matching given keys for referenced table "car"
+
+2021-08-10 01:11:32.434 UTC [112] STATEMENT: CREATE TABLE transaction(
+
+transaction_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+car_price numeric(6, 0),
+
+transaction_month int,
+
+customer_name varchar(50),
+
+customer_phone numeric(8, 0),
+
+car_id serial,
+
+manufacturer_name varchar(50),
+
+FOREIGN KEY (car_price)REFERENCES car(price),
+
+FOREIGN KEY (customer_name) REFERENCES customer(customer_name),
+
+FOREIGN KEY (customer_phone) REFERENCES customer(customer_phone),
+
+FOREIGN KEY (car_id) REFERENCES customer(car_id)
+
+);
+
+
+The database cluster will be initialized with locale "en_US.utf8".
+
+The default database encoding has accordingly been set to "UTF8".
+
+The default text search configuration will be set to "english".
+
+
+Data page checksums are disabled.
+
+
+fixing permissions on existing directory /var/lib/postgresql/data ... ok
+
+creating subdirectories ... ok
+
+selecting dynamic shared memory implementation ... posix
+
+selecting default max_connections ... 100
+
+selecting default shared_buffers ... 128MB
+
+selecting default time zone ... Etc/UTC
+
+creating configuration files ... ok
+
+running bootstrap script ... ok
+
+performing post-bootstrap initialization ... ok
+
+syncing data to disk ... ok
+
+
+
+Success. You can now start the database server using:
+
+
+pg_ctl -D /var/lib/postgresql/data -l logfile start
+
+
+waiting for server to start....2021-08-09 19:43:56.162 UTC [47] LOG: starting PostgreSQL 13.3 (Debian 13.3-1.pgdg100+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 8.3.0-6) 8.3.0, 64-bit
+
+2021-08-09 19:43:56.164 UTC [47] LOG: listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+
+2021-08-09 19:43:56.170 UTC [48] LOG: database system was shut down at 2021-08-09 19:43:55 UTC
+
+2021-08-09 19:43:56.173 UTC [47] LOG: database system is ready to accept connections
+
+done
+
+server started
+
+
+/usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+
+
+waiting for server to shut down...2021-08-09 19:43:56.294 UTC [47] LOG: received fast shutdown request
+
+.2021-08-09 19:43:56.297 UTC [47] LOG: aborting any active transactions
+
+2021-08-09 19:43:56.298 UTC [47] LOG: background worker "logical replication launcher" (PID 54) exited with exit code 1
+
+2021-08-09 19:43:56.298 UTC [49] LOG: shutting down
+
+2021-08-09 19:43:56.313 UTC [47] LOG: database system is shut down
+
+done
+
+server stopped
+
+
+PostgreSQL init process complete; ready for start up.
