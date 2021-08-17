@@ -18,7 +18,7 @@ In this section, dataset1.csv and dataset2.csv were processed and the output fil
 The dependencies of the program are already documented in requirements.txt. Please install the dependencies by executing pip install requirements.txt.
 
 ```sh
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 ## Running the program
 
@@ -45,7 +45,7 @@ For this section, the chart was successfully implemented showing the trend of in
 The dependencies of the program are already documented in requirements.txt. Please install the dependencies by executing pip install requirements.txt.
 
 ```sh
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 ## Running the program
 
